@@ -28,6 +28,7 @@ Dự án này sử dụng cấu trúc App Router của Next.js 13+ và được 
         *   `ui/`: Chứa các component giao diện người dùng cơ bản từ ShadCN/UI (ví dụ: Button, Card, Input).
         *   **`auth/`**: Chứa các component liên quan đến xác thực (ví dụ: form đăng nhập/đăng ký).
         *   **`dashboard/`**: Chứa các component dành riêng cho trang dashboard.
+        *   **`layout/`**: Chứa các component cấu thành layout chung của trang, ví dụ như `Header`.
     *   **`lib/`**: Chứa các hàm tiện ích và logic nghiệp vụ.
         *   `utils.ts`: Các hàm tiện ích chung.
         *   **`firebase/`**: Chứa các hàm để tương tác với dịch vụ Firebase.
