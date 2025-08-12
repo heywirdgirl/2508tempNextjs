@@ -16,16 +16,12 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     }
   }, [user, loading, router]);
 
-  if (loading) {
+  if (loading || !user) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-background">
+      <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] bg-background">
         <LoaderCircle className="w-12 h-12 animate-spin text-primary" />
       </div>
     );
-  }
-
-  if (!user) {
-    return null; // Prevent flicker before redirect
   }
 
   return <>{children}</>;

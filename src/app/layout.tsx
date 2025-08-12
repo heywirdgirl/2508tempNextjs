@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { AuthProvider } from '@/context/AuthContext';
 import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
+import Header from '@/components/layout/Header';
 
 export const metadata: Metadata = {
   title: 'tempNextjs25',
@@ -34,6 +35,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <AuthProvider>
+          <Header />
           {children}
           <Toaster />
         </AuthProvider>

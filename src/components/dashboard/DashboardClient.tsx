@@ -2,24 +2,20 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
-import { logOut } from "@/lib/firebase/auth";
 import { getTasks, type Task } from "@/lib/firebase/firestore";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { LogOut, LoaderCircle, Plus } from "lucide-react";
+import { LoaderCircle, Plus } from "lucide-react";
 import TaskItem from "./TaskItem";
 import AddTaskDialog from "./AddTaskDialog";
 
 export default function DashboardClient() {
   const { user } = useAuth();
-  const router = useRouter();
   const { toast } = useToast();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
-  const [isLogoutLoading, setIsLogoutLoading] = useState(false);
 
   const fetchTasks = useCallback(async () => {
     if (user) {
@@ -30,8 +26,8 @@ export default function DashboardClient() {
       } catch (error) {
         toast({
           variant: "destructive",
-          title: "Error fetching tasks",
-          description: "Could not load your tasks. Please try again later.",
+          title: "Lỗi khi tải công việc",
+          description: "Không thể tải danh sách công việc của bạn. Vui lòng thử lại sau.",
         });
       } finally {
         setLoading(false);
@@ -43,50 +39,19 @@ export default function DashboardClient() {
     fetchTasks();
   }, [fetchTasks]);
 
-  const handleLogout = async () => {
-    setIsLogoutLoading(true);
-    try {
-      await logOut();
-      router.push("/login");
-    } catch (error: any) {
-      toast({
-        variant: "destructive",
-        title: "Logout Failed",
-        description: error.message,
-      });
-      setIsLogoutLoading(false);
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-background">
-      <header className="bg-card border-b">
-        <div className="container mx-auto p-4 flex justify-between items-center">
-          <h1 className="text-xl font-headline font-semibold">Dashboard</h1>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleLogout}
-            disabled={isLogoutLoading}
-          >
-            {isLogoutLoading ? (
-              <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <LogOut className="mr-2 h-4 w-4" />
-            )}
-            Logout
-          </Button>
-        </div>
-      </header>
-
+    <div className="min-h-[calc(100vh-4rem)] bg-secondary/50">
       <main className="container mx-auto p-4 md:p-8">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="font-headline">My Tasks</CardTitle>
+            <div className="space-y-1">
+                <CardTitle className="font-headline">Công việc của tôi</CardTitle>
+                <CardDescription>Chào mừng trở lại! Đây là danh sách công việc của bạn.</CardDescription>
+            </div>
             <AddTaskDialog onTaskAdded={fetchTasks}>
               <Button size="sm">
                 <Plus className="mr-2 h-4 w-4" />
-                Add Task
+                Thêm công việc
               </Button>
             </AddTaskDialog>
           </CardHeader>
@@ -102,9 +67,9 @@ export default function DashboardClient() {
                 ))}
               </ul>
             ) : (
-              <div className="text-center py-8 text-muted-foreground">
-                <p className="font-semibold">No tasks yet!</p>
-                <p>Click "Add Task" to get started.</p>
+              <div className="text-center py-8 text-muted-foreground border-2 border-dashed rounded-lg">
+                <p className="font-semibold">Chưa có công việc nào!</p>
+                <p>Nhấn "Thêm công việc" để bắt đầu.</p>
               </div>
             )}
           </CardContent>
