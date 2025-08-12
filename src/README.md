@@ -12,7 +12,7 @@ Dưới đây là danh sách các thư viện chính được sử dụng trong 
     *   **Firestore**: Cơ sở dữ liệu NoSQL để lưu trữ và truy vấn dữ liệu của ứng dụng, ví dụ như các công việc (tasks).
 *   **Tailwind CSS**: Là một framework CSS "utility-first" giúp tạo kiểu nhanh chóng và tùy chỉnh giao diện người dùng trực tiếp trong file mã nguồn HTML/JSX.
 *   **ShadCN/UI**: Là một bộ sưu tập các component React có thể tái sử dụng, được xây dựng trên nền tảng Radix UI và Tailwind CSS. Các component này giúp xây dựng giao diện người dùng đẹp, dễ tiếp cận và nhất quán một cách nhanh chóng.
-*   **Genkit**: Là một bộ công cụ mã nguồn mở của Google để xây dựng các ứng dụng tích hợp AI. Nó giúp đơn giản hóa việc gọi các mô hình ngôn ngữ lớn (như Gemini), quản lý các "luồng" (flows) xử lý AI, và tổ chức mã nguồn cho các tính năng thông minh một cách hiệu quả và có cấu trúc.
+*   **Genkit**: Là một bộ công cụ mã nguồn mở của Google để xây dựng các ứng dụng AI sản xuất. Nó được sử dụng để tích hợp các tính năng AI vào ứng dụng.
 
 ## Cấu trúc file
 
